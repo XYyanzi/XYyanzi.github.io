@@ -184,7 +184,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-24 02:59:35" itemprop="dateModified" datetime="2020-05-24T02:59:35+08:00">2020-05-24</time>
+                <time title="修改时间：2020-05-24 03:43:53" itemprop="dateModified" datetime="2020-05-24T03:43:53+08:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -214,19 +214,31 @@
 <li><strong>安装Git</strong><br>用来将本地Hexo内容提交到Github上。这个可以跳过，基本大家都有git了。没有的话可以通过homebrew安装或者装个Xcode</li>
 </ol>
 <h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><ol>
-<li><p><strong>安装Hexo</strong><br>当Node.js和Git都安装好后就可以正式安装Hexo了，终端执行如下命令：<br> $ npm install -g hexo</p>
+<li><p><strong>安装Hexo</strong><br>当Node.js和Git都安装好后就可以正式安装Hexo了，终端执行如下命令：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>注意：<br> 1、不同版本的mac系统可能会有不同的情况，如果遇到权限不足的问题可以在前面加上sudo<br> 2、官网上的命令是<code>$ npm install -g hexo-cli</code>,猜测是windows版本的安装命令</p>
 </blockquote>
 </li>
 <li><p><strong>初始化blog</strong><br> 安装好Hexo之后，就可以初始化blog项目了</p>
 <ul>
-<li>在你的本地电脑上创建一个目录，用来存放blog的文章，我的目录名叫Myblog <code>$ mkdir Myblog</code></li>
-<li>进入到Myblog目录中，执行命令: <code>$ hexo init</code></li>
-<li>在Myblog目录下执行命令 <code>$ npm install</code> 安装npm</li>
-<li>安装成功后可以看到Myblog多了很多文件和目录<img src="https://pics.images.ac.cn/image/5ec96f298d5d4.html" alt=" "></li>
-<li>安装完成后，本地blog就算设置成功了，可以通过<code>$ hexo s</code>命令在本地启动服务，预览博客</li>
-<li>此时，浏览器中打开网址[<a href="http://localhost:4000]，能看到如下页面![">http://localhost:4000]，能看到如下页面![</a> ](<a href="https://pics.images.ac.cn/image/5ec96f4642a1f.html" target="_blank" rel="noopener">https://pics.images.ac.cn/image/5ec96f4642a1f.html</a>) 此时本地的blog就已经设置好了</li>
+<li><p>在你的本地电脑上创建一个目录，用来存放blog的文章，我的目录名叫Myblog</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir Myblog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入到Myblog目录中，执行命令:</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在Myblog目录下执行命令安装npm</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装成功后可以看到Myblog多了很多文件和目录<img src="https://pics.images.ac.cn/image/5ec96f298d5d4.html" alt=" "></p>
+</li>
+<li><p>安装完成后，本地blog就算设置成功了，可以通过命令在本地启动服务，预览博客</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo serve       或者hexo s</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>此时，浏览器中打开网址[<a href="http://localhost:4000]，能看到如下页面![">http://localhost:4000]，能看到如下页面![</a> ](<a href="https://pics.images.ac.cn/image/5ec96f4642a1f.html" target="_blank" rel="noopener">https://pics.images.ac.cn/image/5ec96f4642a1f.html</a>) 此时本地的blog就已经设置好了</p>
+</li>
 </ul>
 </li>
 </ol>
@@ -251,11 +263,19 @@
 </li>
 <li><p>部署到远程github</p>
 <ul>
-<li>执行<code>hexo generate</code>或者直接<code>hexo g</code>,用来生成静态页面</li>
-<li>部署到远程执行命令<code>hexo deploy</code>或者直接<code>hexo d</code>，如果报错<code>ERROR Deployer not found: git</code>，则需要先安装依赖</li>
-<li>在Myblog目录下执行<br><code>$ npm install hexo-deployer-git --save</code></li>
-<li>安装完依赖之后再次执行<code>hexo d</code>，即可开始上传至hithub，上传过程中可能会需要输入github的邮箱和密码</li>
-<li><code>hexo d</code>执行成功之后，就可以在浏览器中打开[<a href="https://xyyanzi.github.io/]" target="_blank" rel="noopener">https://xyyanzi.github.io/]</a> (将xyyanzi换成你自己的)，此时就能看到和[<a href="http://localhost:4000/]" target="_blank" rel="noopener">http://localhost:4000/]</a> 一样的页面了</li>
+<li><p>执行以下命令用来生成静态页面</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate        或者hexo g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>部署到远程执行以下命令，如果报错<code>ERROR Deployer not found: git</code>，则需要先安装依赖</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy        或者hexo d</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在Myblog目录下执行</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装完依赖之后再次执行<code>hexo d</code>，即可开始上传至hithub，上传过程中可能会需要输入github的邮箱和密码</p>
+</li>
+<li><p><code>hexo d</code>执行成功之后，就可以在浏览器中打开[<a href="https://xyyanzi.github.io/]" target="_blank" rel="noopener">https://xyyanzi.github.io/]</a> (将xyyanzi换成你自己的)，此时就能看到和[<a href="http://localhost:4000/]" target="_blank" rel="noopener">http://localhost:4000/]</a> 一样的页面了</p>
+</li>
 </ul>
 </li>
 </ol>
