@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xyyanzi.github.io/2020/11/23/python-datetime/</loc>
+    
+    <lastmod>2020-11-25T02:22:04.890Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xyyanzi.github.io/2020/11/24/gradle-manager/</loc>
     
     <lastmod>2020-11-24T03:44:01.387Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://xyyanzi.github.io/2020/10/13/mysql-issue-solve/</loc>
     
     <lastmod>2020-11-23T09:54:04.049Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xyyanzi.github.io/2020/11/23/python-datetime/</loc>
-    
-    <lastmod>2020-11-23T09:53:40.586Z</lastmod>
     
   </url>
   
