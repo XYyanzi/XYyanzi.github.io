@@ -153,6 +153,137 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xyyanzi.github.io/2021/03/02/Jq%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="豆包">
+      <meta itemprop="description" content="一只爱吃肉的豆包">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="豆包的博客间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/02/Jq%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Jq简单使用入门</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-02 15:06:33 / 修改时间：17:19:11" itemprop="dateCreated datePublished" datetime="2021-03-02T15:06:33+08:00">2021-03-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">测试工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Jq工具使用入门"><a href="#Jq工具使用入门" class="headerlink" title="Jq工具使用入门"></a>Jq工具使用入门</h3><h4 id="什么是jq"><a href="#什么是jq" class="headerlink" title="什么是jq"></a>什么是jq</h4><p>jq is a tool for processing JSON inputs, applying the given filter to its JSON text inputs and producing the filter’s results as JSON on standard output<a href="https://stedolan.github.io/jq/manual/#Builtinoperatorsandfunctions" target="_blank" rel="noopener">官网</a>  </p>
+<p>对于JSON格式而言，jq就像sed/awk/grep这些神器一样的方便，而且jq没有乱七八糟的依赖，只需要一个binary文件jq就足矣。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">'&#123;"foo": 0&#125;'</span> | jq .</span></span><br><span class="line">&#123;</span><br><span class="line">    "foo": 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装jq"><a href="#安装jq" class="headerlink" title="安装jq"></a>安装jq</h4><p>macOS: <code>brew install jq</code><br>其他系统安装方式见<a href="https://stedolan.github.io/jq/download/" target="_blank" rel="noopener">官网</a></p>
+<h4 id="基本过滤使用"><a href="#基本过滤使用" class="headerlink" title="基本过滤使用"></a>基本过滤使用</h4><ul>
+<li>获取原始数据 使用命令<code>jq .</code></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo '&#123;"foo": 42, "bar": "less interesting data"&#125;' | jq .</span><br><span class="line">&#123;</span><br><span class="line">  "foo": 42,</span><br><span class="line">  "bar": "less interesting data"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取某个对象的值 <code>jq .foo</code><br>如果键包含特殊字符或以数字开头，则需要用双引号将其括起来，如 <code>jq &#39;&quot;.foo$&quot;&#39; 或 jq &#39;.[&quot;foo$&quot;]&#39;</code></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">echo '&#123;"foo": 42, "bar": "less interesting data"&#125;' | jq '.foo' </span><br><span class="line">42</span><br><span class="line"></span><br><span class="line">echo '&#123;"foo": 42, "bar": "less interesting data"&#125;' | jq '.bar'</span><br><span class="line">"less interesting data"</span><br><span class="line"></span><br><span class="line">echo '&#123;"foo": 42, "bar": "less interesting data"&#125;' | jq '.notfoo'</span><br><span class="line">null</span><br><span class="line"></span><br><span class="line">echo '&#123;"2foo": 42, "bar": "less interesting data"&#125;' | jq '.["2foo"]'</span><br><span class="line">42</span><br><span class="line"></span><br><span class="line">echo '&#123;"2foo": 42, "bar": "less interesting data"&#125;' | jq '."2foo"'</span><br><span class="line">42</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取某个数组中的对象 <code>jq .[2]</code> [2]表示数组中下标为2的数据, <code>jq .[]</code>输出整个数组，如果是要过滤的内容不是数组而是对象,<code>jq .[]</code>则会输出所有对象的值（value）<br>也可以进行切片过滤 .[index-start:index-end] 前闭后开</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">echo '[&#123;"name":"JSON", "good":true&#125;, &#123;"name":"XML", "good":false&#125;]' | jq '.[]'</span><br><span class="line">&#123;</span><br><span class="line">  "name": "JSON",</span><br><span class="line">  "good": true</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">  "name": "XML",</span><br><span class="line">  "good": false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo '[&#123;"name":"JSON", "good":true&#125;, &#123;"name":"XML", "good":false&#125;]' | jq '.[0]'</span><br><span class="line">&#123;</span><br><span class="line">  "name": "JSON",</span><br><span class="line">  "good": true</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo '[&#123;"name":"JSON", "good":true&#125;, &#123;"name":"XML", "good":false&#125;]' | jq '.[2]'</span><br><span class="line">null</span><br><span class="line"></span><br><span class="line">echo '[2,4,7]' | jq '.[-2]'                                   </span><br><span class="line">4</span><br><span class="line"></span><br><span class="line">echo '[2,4,7,6,5,3]' | jq '.[1,5]'                               </span><br><span class="line">4</span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">echo '[2,4,7,6,5,3]' | jq '.[1:5]'                               </span><br><span class="line">[</span><br><span class="line">  4,</span><br><span class="line">  7,</span><br><span class="line">  6,</span><br><span class="line">  5</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">echo '&#123;"foo":42, "bar":"less interesting data"&#125;' | jq .[]      xunyan@bogon</span><br><span class="line">42</span><br><span class="line">"less interesting data"</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以使用分隔符 <code>,</code>来获取多个值</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">echo '&#123;"foo":42, "bar":"less interesting data"&#125;' | jq '.foo,.bar'</span><br><span class="line">42</span><br><span class="line">"less interesting data"</span><br><span class="line"></span><br><span class="line">echo '&#123;"user":"stedolan", "projects": ["jq", "wikiflow"]&#125;' | jq '.user,.projects'</span><br><span class="line">"stedolan"</span><br><span class="line">[</span><br><span class="line">  "jq",</span><br><span class="line">  "wikiflow"</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用<code>|</code>管道符号来进行数据传递</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">echo '[&#123;"name":"JSON", "good":true&#125;, &#123;"name":"XML", "good":false&#125;]' | jq '.[] | .name'</span><br><span class="line">"JSON"</span><br><span class="line">"XML"</span><br><span class="line"></span><br><span class="line">echo '&#123;"user":"stedolan", "projects": ["jq", "wikiflow"]&#125;' | jq '.projects |.[0]'</span><br><span class="line">"jq"</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用括号<code>()</code>进行分组</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">echo 1 | jq '(.+2) *5'</span><br><span class="line">15</span><br><span class="line"></span><br><span class="line">echo '&#123;"user":"stedolan", "projects": ["jq", "wikiflow"]&#125;' | jq '(.projects |.[0]) *2'</span><br><span class="line">"jqjq"</span><br><span class="line"></span><br><span class="line">echo '&#123;"user":"stedolan", "projects": ["jq", "wikiflow"]&#125;' | jq '(.projects |.[0]) + "ddd"'</span><br><span class="line">"jqddd"</span><br></pre></td></tr></table></figure>
+
+<h4 id="其他用法"><a href="#其他用法" class="headerlink" title="其他用法"></a>其他用法</h4><ul>
+<li>修改内容</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 将user的值修改为new user</span></span><br><span class="line">echo '&#123;"user":"stedolan", "projects": ["jq", "wikiflow"]&#125;' | jq '.user="new user"'</span><br><span class="line">&#123;</span><br><span class="line">  "user": "new user",</span><br><span class="line">  "projects": [</span><br><span class="line">    "jq",</span><br><span class="line">    "wikiflow"</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 将projects的值中的第一个元素修改为3</span></span><br><span class="line">echo '&#123;"user":"stedolan", "projects": ["jq", "wikiflow"]&#125;' | jq '.projects[1]=3'</span><br><span class="line">&#123;</span><br><span class="line">  "user": "stedolan",</span><br><span class="line">  "projects": [</span><br><span class="line">    "jq",</span><br><span class="line">    3</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>组合</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 将user对应的值作为key，projects的值作为value 组合成新的对象</span></span><br><span class="line">echo '&#123;"user":"stedolan", "projects": ["jq", "wikiflow"]&#125;' | jq '&#123;(.user):.projects&#125;'</span><br><span class="line">&#123;</span><br><span class="line">  "stedolan": [</span><br><span class="line">    "jq",</span><br><span class="line">    "wikiflow"</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#</span><span class="bash"> user对象不变，title有两个值，因此组合成有两个对象的数组</span></span><br><span class="line">echo '&#123;"user":"stedolan", "title": ["JQ Primer","More JQ"]&#125;' | jq '&#123;user,title:.title[]&#125;'</span><br><span class="line">&#123;</span><br><span class="line">  "user": "stedolan",</span><br><span class="line">  "title": "JQ Primer"</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">  "user": "stedolan",</span><br><span class="line">  "title": "More JQ"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运算</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">echo "10" | jq '(.+2)*5'                                       </span><br><span class="line">60</span><br><span class="line"><span class="meta">#</span><span class="bash"> 字符串或者对象拼接</span></span><br><span class="line"> echo null | jq '&#123;a: 1&#125; + &#123;b: 2&#125; + &#123;c: 3&#125; + &#123;a: 42&#125;'            </span><br><span class="line">&#123;</span><br><span class="line">  "a": 42,</span><br><span class="line">  "b": 2,</span><br><span class="line">  "c": 3</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 列表减法移除对应元素 + 对应加入元素</span></span><br><span class="line">echo '["xml", "yaml", "json"]' | jq '. - ["xml"]'              </span><br><span class="line">[</span><br><span class="line">  "yaml",</span><br><span class="line">  "json"</span><br><span class="line">]</span><br><span class="line"><span class="meta">#</span><span class="bash"> 对某个对象进行运算</span></span><br><span class="line">echo '&#123;"a":5&#125;' | jq '.a+=10'                                   </span><br><span class="line">&#123;</span><br><span class="line">  "a": 15</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 对数组中所有对象进行批量运算</span></span><br><span class="line">echo '[&#123;"a":5&#125;,&#123;"a":4&#125;]' | jq '.[].a+=10'                      </span><br><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    "a": 15</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    "a": 14</span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取长度</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">echo '["user"]' | jq '.[] | length'                            </span><br><span class="line">4</span><br><span class="line"><span class="meta">#</span><span class="bash"> 输出每个元素的长度</span></span><br><span class="line">echo '[[1,2], "string", &#123;"a":2&#125;, null]' | jq '.[] | length'    </span><br><span class="line">2</span><br><span class="line">6</span><br><span class="line">1</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取所有的keys或者索引</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">echo '&#123;"user":"stedolan", "title": ["JQ Primer","More JQ"]&#125;' | jq 'keys'</span><br><span class="line">[</span><br><span class="line">  "title",</span><br><span class="line">  "user"</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">echo '[[1,2], "string", &#123;"a":2&#125;, null]' | jq 'keys'           </span><br><span class="line">[</span><br><span class="line">  0,</span><br><span class="line">  1,</span><br><span class="line">  2,</span><br><span class="line">  3</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>map(x), map_values(x)<br>对于任何过滤器x, map(x)将为输入数组的每个元素运行该过滤器，并以新数组的形式返回输出。map(.+1)将增加数字数组的每个元素。类似地，map_values(x)将为每个元素运行该过滤器，但在传递对象时它将返回一个对象。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> echo '[1,2,3]' | jq 'map(.+1)'                                 </span><br><span class="line">[</span><br><span class="line">  2,</span><br><span class="line">  3,</span><br><span class="line">  4</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">echo '&#123;"a": 1, "b": 2, "c": 3&#125;' | jq 'map_values(.+1)'         xunyan@bogon</span><br><span class="line">&#123;</span><br><span class="line">  "a": 2,</span><br><span class="line">  "b": 3,</span><br><span class="line">  "c": 4</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://xyyanzi.github.io/2021/02/03/Junit5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -176,10 +307,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-02-03 14:28:47 / 修改时间：20:11:33" itemprop="dateCreated datePublished" datetime="2021-02-03T14:28:47+08:00">2021-02-03</time>
+              <time title="创建时间：2021-02-03 14:28:47" itemprop="dateCreated datePublished" datetime="2021-02-03T14:28:47+08:00">2021-02-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-04 20:14:05" itemprop="dateModified" datetime="2021-02-04T20:14:05+08:00">2021-02-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -317,6 +454,31 @@
 <h4 id="ArgumentsSource"><a href="#ArgumentsSource" class="headerlink" title="@ArgumentsSource"></a>@ArgumentsSource</h4><blockquote>
 <p>可以使用@ArgumentsSource指定一个自定义的，可重用的ArgumentsProvider。</p>
 </blockquote>
+<h4 id="maven运行测试用例"><a href="#maven运行测试用例" class="headerlink" title="maven运行测试用例"></a>maven运行测试用例</h4><p>1、mvn test</p>
+<blockquote>
+<p>会执行所有的测试用例，生成测试报告在 target/surefire-reports</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mvn test -Dtest=demomavenTest <span class="comment">//指定单个测试执行类</span></span><br><span class="line">mvn test -Dtest=demo*Test <span class="comment">//指定所有以demo开头以Test结尾的测试类</span></span><br><span class="line">mvn test -Dtest=demo*Test, heheTest <span class="comment">//以逗号隔开多个指定的测试类</span></span><br></pre></td></tr></table></figure>
+
+<p>2、引用maven-surefire插件</p>
+<blockquote>
+<p>插件支持多种多样的用例收集和执行方式， mvn test -Dtest=TestCircle<br>se syntax e.g. “foo/MyTest.java”, “**/MyTest.java”, “MyTest” for “test” parameter (see includes/excludes).<br>mvn -Dtest=TestCircle#mytest test  </p>
+</blockquote>
+<p><a href="https://maven.apache.org/surefire/maven-surefire-plugin/index.html" target="_blank" rel="noopener">插件官方文档</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.jupiter<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-jupiter-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.7.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.jupiter<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-jupiter-engine<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.7.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.22.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">parallel</span>&gt;</span>methods<span class="tag">&lt;/<span class="name">parallel</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">threadCount</span>&gt;</span>5<span class="tag">&lt;/<span class="name">threadCount</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>3、mvn 并行执行</p>
+<blockquote>
+<p>在插件中增加配置<br><code>&lt;parallel&gt;methods&lt;/parallel&gt;</code><br><code>&lt;threadCount&gt;5&lt;/threadCount&gt;</code><br>parallel决定并行未读：methods，classes，both，suites<br>threadCount举行并行数量  </p>
+</blockquote>
+<p>4、junit5本身支持并行执行case  Parallel Execution</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">junit.jupiter.execution.parallel.enabled = <span class="keyword">true</span></span><br><span class="line">junit.jupiter.execution.parallel.mode.<span class="keyword">default</span> = same_thread</span><br><span class="line">junit.jupiter.execution.parallel.mode.classes.<span class="keyword">default</span> = concurrent</span><br></pre></td></tr></table></figure>
+
+<h4 id="Allure测试报告"><a href="#Allure测试报告" class="headerlink" title="Allure测试报告"></a>Allure测试报告</h4><p>添加依赖和插件<br><a href="https://docs.qameta.io/allure/#_junit_5" target="_blank" rel="noopener">官方文档</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.qameta.allure<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>allure-junit5<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.21.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">testFailureIgnore</span>&gt;</span>false<span class="tag">&lt;/<span class="name">testFailureIgnore</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">argLine</span>&gt;</span></span><br><span class="line">            -javaagent:"$&#123;settings.localRepository&#125;/org/aspectj/aspectjweaver/$&#123;aspectj.version&#125;/aspectjweaver-$&#123;aspectj.version&#125;.jar"</span><br><span class="line">        <span class="tag">&lt;/<span class="name">argLine</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">systemProperties</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>junit.jupiter.extensions.autodetection.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">systemProperties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.junit.platform<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit-platform-surefire-provider<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;aspectj.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.qameta.allure<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>allure-maven<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">reportVersion</span>&gt;</span>2.4.1<span class="tag">&lt;/<span class="name">reportVersion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2、macOS安装allure<br><code>brew install allure</code></p>
+<p>3、执行测试，生成allure报告<br>4、在allure报告中执行下面命令就可以生成报告<br><code>allure serve .</code></p>
 <h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><p><a href="https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests-setup" target="_blank" rel="noopener">官网</a><br><a href="https://doczhcn.gitbook.io/junit5/index/index-2/parameterized-tests" target="_blank" rel="noopener">Junit5简介</a><br><a href="https://tonydeng.github.io/2017/10/09/junit-5-tutorial-introduction/" target="_blank" rel="noopener">参数化测试</a><br><a href="https://blog.csdn.net/qq_35448165/article/details/108246025" target="_blank" rel="noopener">单元测试之JUnit 5 参数化测试使用手册</a></p>
 
       
@@ -360,10 +522,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-12-05 08:20:56 / 修改时间：12:49:33" itemprop="dateCreated datePublished" datetime="2020-12-05T08:20:56+08:00">2020-12-05</time>
+              <time title="创建时间：2020-12-05 08:20:56" itemprop="dateCreated datePublished" datetime="2020-12-05T08:20:56+08:00">2020-12-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-02 15:39:48" itemprop="dateModified" datetime="2021-03-02T15:39:48+08:00">2021-03-02</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -404,35 +572,30 @@
 </blockquote>
 </li>
 <li><p>v-for</p>
-</li>
-</ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'app'</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">"(value,index) in arr"</span>&gt;</span>&#123;&#123;value&#125;&#125; --- &#123;&#123;index&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">"(value,key,index) in obj"</span>&gt;</span>&#123;&#123;value&#125;&#125; -- &#123;&#123;key&#125;&#125; -- &#123;&#123;index&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">"value in objarr"</span>&gt;</span>&#123;&#123;value.name&#125;&#125; -- &#123;&#123;value.age&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>注意这里是固定写法，第一个变量代表数组中的值，第二个变量代表索引</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">            el:<span class="string">'#app'</span>,</span><br><span class="line">            data:&#123;</span><br><span class="line">                arr:[<span class="string">"2333"</span>,<span class="string">"sdffsdf"</span>,<span class="string">"sdfhsdf"</span>],</span><br><span class="line">                obj:&#123;</span><br><span class="line">                    name:<span class="string">"zhangdan"</span>,</span><br><span class="line">                    age: <span class="number">19</span></span><br><span class="line">                &#125;,</span><br><span class="line">                objarr:[</span><br><span class="line">                    &#123;</span><br><span class="line">                        name:<span class="string">"zhangsan"</span>,</span><br><span class="line">                        age:<span class="number">19</span></span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        name:<span class="string">"lisi"</span>,</span><br><span class="line">                        age:<span class="number">20</span></span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-
-<ul>
+</li>
 <li><p>v-on  绑定事件，可以简写为@</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'app'</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"add()"</span>&gt;</span>加1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;&#123;count&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#app'</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        count:<span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        add()&#123;</span><br><span class="line">            <span class="keyword">this</span>.count++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>v-bind 绑定属性，可以简写为:</p>
-</li>
-</ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'app'</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"width: 100px;height: 100px; border: 1px solid #000"</span> <span class="attr">v-bind:style</span>=<span class="string">"bgcolor"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">'#app'</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        bgcolor: &#123;</span><br><span class="line">            backgroundColor: <span class="string">'#999'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>v-modle 绑定数据,从数据框中获取数据传递给后台</li>
-</ul>
+</li>
+<li><p>v-modle 绑定数据,从数据框中获取数据传递给后台</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'app'</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">v-model</span>=<span class="string">"qwq"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"showtext()"</span>&gt;</span>打印<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">'#app'</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        qwq: <span class="string">"输入的内容"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        showtext()&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.qwq)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
 <h2 id="创建vue项目"><a href="#创建vue项目" class="headerlink" title="创建vue项目"></a>创建vue项目</h2><ul>
 <li>安装vue-cli工具和创建项目</li>
 </ul>
@@ -1221,14 +1384,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
