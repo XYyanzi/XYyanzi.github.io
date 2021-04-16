@@ -153,6 +153,104 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xyyanzi.github.io/2021/04/15/java%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="豆包">
+      <meta itemprop="description" content="一只爱吃肉的豆包">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="豆包的博客间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/15/java%E5%AD%A6%E4%B9%A0%E7%AC%AC%E4%B8%80%E5%A4%A9/" class="post-title-link" itemprop="url">java学习day1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-15 16:49:15" itemprop="dateCreated datePublished" datetime="2021-04-15T16:49:15+08:00">2021-04-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-16 11:54:04" itemprop="dateModified" datetime="2021-04-16T11:54:04+08:00">2021-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>基本数据类型(4类8种):  </p>
+<blockquote>
+<p>整数型:  byte(1字节)、short(2字节)、int(4字节)、long(8字节)<br>浮点型:  float(4字节)、double(8字节)<br>字符型:  char(2字节)<br>布尔型:  boolean(1字节)  </p>
+</blockquote>
+<p>引用数据类型:  字符串、数组、类、接口、Lambda  </p>
+<p>变量注意事项：<br>1、 如果创建多个变量，变量名称不可以重复<br>2、 对于float和long类型，字母后缀的字母F和L不能丢掉<br>3、 如果使用byte或者short类型的变量，那么右侧的数据值不能超过左侧类型的取值范围<br>4、 变量的使用不能超过作用域的范围  </p>
+<p>数据类型转换:<br>自动类型转换（隐式）：数据范围从小到大  int–&gt;long  byte–&gt;int float–&gt;double  long–&gt;float<br>强势类型转换（显式）：数据范围从大到小，精度会发生损失  int num = (int)100L;<br>注意事项：<br>1、强制类型转换一般不推荐使用，因为有可能发生精度损失、数据溢出<br>2、 byte/short/char可以发生数学运算，例如加法“+”，这三种类型的数据在运算时会首先被转换成整型，然后再进行计算<br>3、boolean类型不能发生数据类型转换</p>
+<p>ASCII码表： 美国信息交换标准代码   48-‘0’  65-‘A’  97-‘a’<br>Unicode码表： 万国码。也是数字和符号的对照关系，开头0-127部分和ASCII码表一样，但从128开始包含有更多字符（各种语言和emoji）。</p>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>算数运算符： <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code>  <code>++</code>（自增） <code>--</code>（自减）</p>
+<blockquote>
+<p>注意事项：  一旦运算当中有不同的类型的数据，那么结果将会是数据类型范围大的那种<br>自增/自减运算符:</p>
+<blockquote>
+<p>单独使用： 单独使用时  num++ 和 ++num没有区别<br>混合使用： 混合使用时有重大区别，++num 先加后用  num++ 先用后加</p>
+</blockquote>
+</blockquote>
+<p>赋值运算符： <code>=</code>  <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code><br>比较运算符： <code>==</code> <code>&lt;</code> <code>&gt;</code> <code>&lt;=</code> <code>&gt;=</code> <code>!=</code><br>逻辑运算符： <code>&amp;&amp;</code> <code>||</code> <code>!</code><br>三元运算符：  <code>条件判断? 表达式a:表达式b</code> 如果条件判断为true，则取表达式a的值，条件判断为false，则取b的值</p>
+<blockquote>
+<p>注意事项：<br><code>&amp;&amp;</code> 和 <code>||</code> 具有短路效果: 如果根据左边已经可以判断得到最终结果，那么右边的代码将不再执行，从而节省一定的性能<br>三元运算符表达式a和b的结果必须符合左侧数据类型的要求<br>三元运算符的结果必须被使用</p>
+</blockquote>
+<h2 id="方法入门"><a href="#方法入门" class="headerlink" title="方法入门"></a>方法入门</h2><p>方法的定义:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">functionName</span><span class="params">()</span></span>&#123;</span><br><span class="line">    方法体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意事项：<br>1、方法定义的先后顺序无所谓<br>2、方法的定义不能产生嵌套包含关系<br>3、方法定义好之后，需要被调用才能执行  </p>
+<p>编译器优化:<br>1、赋值时如果右侧数据没有超过左侧的范围，编译器会帮助补充上强转<br>2、如果右侧数据超过了左侧的反问，编译器会报错</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span> s = <span class="number">65</span>;</span><br><span class="line">        <span class="comment">// int --&gt; char ,65在char范围内，因此编译器会帮忙做强转</span></span><br><span class="line">        System.out.println(s); <span class="comment">// A</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://xyyanzi.github.io/2021/03/08/selenium%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -659,7 +757,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-13 19:27:41" itemprop="dateModified" datetime="2021-04-13T19:27:41+08:00">2021-04-13</time>
+                <time title="修改时间：2021-04-14 09:59:55" itemprop="dateModified" datetime="2021-04-14T09:59:55+08:00">2021-04-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -682,7 +780,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="vue基本语法"><a href="#vue基本语法" class="headerlink" title="vue基本语法"></a>vue基本语法</h2><p><a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener">vue官网</a><br><strong>常见的组件库</strong></p>
+          <h2 id="Vue基本语法"><a href="#Vue基本语法" class="headerlink" title="Vue基本语法"></a>Vue基本语法</h2><p><a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener">vue官网</a><br><strong>常见的组件库</strong></p>
 <blockquote>
 <p>ElementUI<br>BootstrapVue<br>Vuetify  </p>
 </blockquote>
@@ -725,7 +823,7 @@
 
 </li>
 </ul>
-<h2 id="创建vue项目"><a href="#创建vue项目" class="headerlink" title="创建vue项目"></a>创建vue项目</h2><ul>
+<h2 id="创建Vue项目"><a href="#创建Vue项目" class="headerlink" title="创建Vue项目"></a>创建Vue项目</h2><ul>
 <li>安装vue-cli工具和创建项目</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install @vue/cli -g</span><br><span class="line">vue -V</span><br><span class="line">vue ui</span><br></pre></td></tr></table></figure>
@@ -735,7 +833,7 @@
 </ul>
 <p>目录结构：<br>    node-modules:存放各种依赖文件和第三方库之类的（本地，不上传git）<br>    public: 存放静态文件<br>    src: 存放源码文件<br>      - assets: 存放图片<br>      - components: 存放组件vue文件（vue做的事情就是将vue文件转化成html文件使得浏览器能够正常解析）<br>      - plugins: 插件文件<br>      - router: 路由，决定页面跳转<br>      - views: 存放页面文件<br>    package.json: 类似于python的requirements文件,用于配置项目所需要的依赖项，之后项目迁移时，运行<code>npm install</code> 命令，就会将文件中的依赖安装到本地，即node-modules中</p>
 <p>在项目目录下输入命令<code>npm run serve</code>即可启动项目</p>
-<h2 id="编写VUE项目"><a href="#编写VUE项目" class="headerlink" title="编写VUE项目"></a>编写VUE项目</h2><p>1、编写Sign.vue组件文件<br>组件文件由3部分内容组成 模板、script、样式</p>
+<h2 id="编写Vue项目"><a href="#编写Vue项目" class="headerlink" title="编写Vue项目"></a>编写Vue项目</h2><p>1、编写Sign.vue组件文件<br>组件文件由3部分内容组成 模板、script、样式</p>
 <blockquote>
 <p>HTML部分: 使用标签<code>&lt;template&gt;&lt;/template&gt;</code>，该部分只能有一个<code>&lt;div&gt;&lt;/div&gt;</code>标签<br>JS部分: 使用标签<code>&lt;script&gt;&lt;/script&gt;</code>，该部分主要用来写js代码逻辑<br>CSS部分: 使用标签<code>&lt;style&gt;&lt;/style&gt;</code>，该部分主要用来写css代码</p>
 </blockquote>
@@ -1439,78 +1537,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xyyanzi.github.io/2020/05/23/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="豆包">
-      <meta itemprop="description" content="一只爱吃肉的豆包">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="豆包的博客间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/23/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-23 20:39:39" itemprop="dateCreated datePublished" datetime="2020-05-23T20:39:39+08:00">2020-05-23</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1575,7 +1606,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
