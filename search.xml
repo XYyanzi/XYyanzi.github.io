@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>java学习day6</title>
+      <link href="/2021/04/25/java%E5%AD%A6%E4%B9%A0day6/"/>
+      <url>/2021/04/25/java%E5%AD%A6%E4%B9%A0day6/</url>
+      
+        <content type="html"><![CDATA[<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>字符串的特点:<br>1、字符串的内容永不可变,是一个常量<br>2、正是因为字符串不可改变，所以字符串是可以共享使用的。<br>3、字符串效果上相当远<code>char[]</code>字符数组，但是底层原理是<code>byte[]</code>字节数组  </p><h3 id="创建字符串的方式"><a href="#创建字符串的方式" class="headerlink" title="创建字符串的方式"></a>创建字符串的方式</h3><p>三种构造方法，一种直接创建</p><ul><li>public String(): 创建一个空白字符，不含任何内容</li><li>public String(char[] array): 根据字符数组的内容来创建字符串</li><li>public String(byte[] array): 根据字节数组的内容来创建字符串</li><li>String str = “hello”; 右边直接用双引号</li></ul><p>注意:直接写上双引号，就是字符串对象  </p><p>字符串常量池: 程序中直接写双引号创建的字符串，就在字符串常量池中。 【堆内存中保存, 实际保存的是字节数组的地址, new 创建的字符串不再常量池中。<br>==判断: 对于基本数据类型，比较的是值，对于引用类型，比较的是地址值  </p><p><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1619316891/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E9%87%8F%E6%B1%A0%E5%86%85%E5%AD%98%E5%9B%BE_lvn8vh.png" alt="字符串常量池内存图"></p><h3 id="equals-方法"><a href="#equals-方法" class="headerlink" title="equals()方法"></a>equals()方法</h3><p>如果要判断两个引用对象的值是否相等，可以使用equals方法:<br><code>public boolean equals(Object obj)</code><br>注意事项:<br>1、equals方法具有对称性，a.equals(b) 和b.equals(a)是一样的<br>2、如果比较的是一个常量和一个变量，推荐将常量写在前面 “q”.equals(b),防止变量的值是null的情况下报空指针错误.<br>3、equalsIgnoreCase() 方法可以忽略英文大小写  </p><h2 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h2><p>被static关键字修饰的成员变量或成员方法，不属于对象自己，而是属于类，本类对象共享。</p><p>注意事项:<br>1、静态不能直接访问非静态<br>原因：在内存当中【先】有静态内容，【后】有的非静态<br>2、静态方法中不能使用this<br>原因：this是只当前对象，但静态方法不需要对象<br>3、静态优先于非静态，因此静态代码块比构造函数先执行  </p><p>静态代码块的典型用途: <strong>用来一次性的对静态变量进行赋值</strong>  </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> 类名</span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">// 静态代码块</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">静态代码块的特点：在类初次被使用时执行唯一的一次</span><br></pre></td></tr></table></figure><p>静态变量和静态方法在内存中是在方法区的静态区中。<br><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1619449774/%E9%9D%99%E6%80%81static%E5%86%85%E5%AD%98%E5%9B%BE_w8upor.png" alt="static内存图"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>java学习day5</title>
       <link href="/2021/04/22/java%E5%AD%A6%E4%B9%A0day5/"/>
       <url>/2021/04/22/java%E5%AD%A6%E4%B9%A0day5/</url>
