@@ -153,6 +153,148 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xyyanzi.github.io/2021/06/05/java%E5%AD%A6%E4%B9%A0day10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="豆包">
+      <meta itemprop="description" content="一只爱吃肉的豆包">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="豆包的博客间">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/05/java%E5%AD%A6%E4%B9%A0day10/" class="post-title-link" itemprop="url">java学习day10</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-05 12:10:49" itemprop="dateCreated datePublished" datetime="2021-06-05T12:10:49+08:00">2021-06-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-12 14:13:06" itemprop="dateModified" datetime="2021-07-12T14:13:06+08:00">2021-07-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>数据存储的常用结构有: 栈、队列、数组、链表、红黑树集合</p>
+<p>栈(stack)特点:先进后出</p>
+<p>队列(queue)特点: 先进先出</p>
+<p>数组(Array)特点: 查询快，增删慢</p>
+<blockquote>
+<p>查询快: 数组的地址是连续的，我们可以通过数组的首地址找到数组，然后通过数组的素银可以快速查找某个元素<br>增删慢: 数组的长度是固定的，如果要增加或删除一个元素，必须创建一个新数组，把源数组的数据复制过来</p>
+</blockquote>
+<p><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1623060685/%E6%95%B0%E7%BB%84%E7%89%B9%E7%82%B9_piaiv3.png" alt="数组特点"></p>
+<p>链表(linked list)特点: 查询慢，增删快</p>
+<p>链表是由一系列节点(Node)组成,节点可以在运行时动态生成。每个节点包括两部分:一个数据域和两个指针域。</p>
+<table>
+<thead>
+<tr>
+<th>指针域</th>
+<th>数据域</th>
+<th>指针域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自己的地址</td>
+<td>数据</td>
+<td>下一个节点的地址</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>查询慢: 链表中的地址不是连续的，每次查询元素都必须从头开始<br>增删快: 链表结构增加或删除一个元素，对链表的整体结构没有影响，所以增删快</p>
+</blockquote>
+<p>链表有两种类型: 单向链表和双向链表</p>
+<blockquote>
+<p>单向链表: 链表中只有一条链子，不能保证元素的顺序<br>双向链表: 链表中有两条链子，有一条链子是专门记录元素的顺序的。因此双向链表是一个有序集合。</p>
+</blockquote>
+<p><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1623060984/%E9%93%BE%E8%A1%A8%E7%9A%84%E7%89%B9%E5%85%B8_papjbz.png" alt="链表特点"></p>
+<p>二叉树(binary tree): 每个节点不超过2个的有序树</p>
+<p>排序树(查找树): 在二叉树的基础上，元素是有大小顺序的。左子树小，右子树大。</p>
+<p>平衡树: 左子树和右子树相等</p>
+<p>红黑树: 查询速度非常快感。趋近于平衡树，查询的速度非常快。查询叶子节点最大次数和最小次数不能超过2倍。</p>
+<p><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1623060984/%E9%93%BE%E8%A1%A8%E7%9A%84%E7%89%B9%E5%85%B8_papjbz.png" alt="红黑数特点"></p>
+<h2 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h2><p>特点: 有序、有索引(可以使用带索引的方法)、允许有重复的元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 创建一个List接口的对象  多态</span></span><br><span class="line">    List&lt;String&gt; l1 = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="comment">// 使用add方法向集合中添加元素</span></span><br><span class="line">    l1.add(<span class="string">"a"</span>);</span><br><span class="line">    l1.add(<span class="string">"b"</span>);</span><br><span class="line">    l1.add(<span class="string">"c"</span>);</span><br><span class="line">    l1.add(<span class="string">"d"</span>);</span><br><span class="line">    l1.add(<span class="string">"a"</span>);</span><br><span class="line"></span><br><span class="line">    System.out.println(l1);  <span class="comment">// 有序 且允许重复的元素 且重写了toString()方法</span></span><br><span class="line"></span><br><span class="line">    l1.add(<span class="number">3</span>,<span class="string">"new"</span>); <span class="comment">// 在指定的位置添加一个元素</span></span><br><span class="line">    System.out.println(l1);</span><br><span class="line"></span><br><span class="line">    String remove = l1.remove(<span class="number">4</span>); <span class="comment">// 移除指定位置的元素，返回的是被移除的元素</span></span><br><span class="line">    System.out.println(<span class="string">"被移除的元素是: "</span> + remove);</span><br><span class="line">    System.out.println(l1);</span><br><span class="line"></span><br><span class="line">    String setE = l1.set(<span class="number">4</span>, <span class="string">"A"</span>); <span class="comment">// 将指定位置的元素替换为其余的元素，返回的是被替换的元素</span></span><br><span class="line">    System.out.println(<span class="string">"被替换的元素是: "</span> + setE);</span><br><span class="line">    System.out.println(l1);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取集合中的元素 三种方式</span></span><br><span class="line">    Iterator&lt;String&gt; iterator = l1.iterator();</span><br><span class="line">    <span class="keyword">while</span> (iterator.hasNext())&#123;</span><br><span class="line">        String next = iterator.next();</span><br><span class="line">        System.out.println(next);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(String i : l1)&#123;</span><br><span class="line">        System.out.println(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l1.size(); i++) &#123;</span><br><span class="line">        System.out.println(l1.get(i));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ArrayList集合"><a href="#ArrayList集合" class="headerlink" title="ArrayList集合"></a>ArrayList集合</h3><p>ArrayList底层是个数组结构，但长度可变。并且多线程实现。查询快，增删慢。</p>
+<h3 id="LinkedList集合"><a href="#LinkedList集合" class="headerlink" title="LinkedList集合"></a>LinkedList集合</h3><p>LinkedList集合存储数据的结构是链表结构（双向链表）。查询慢、增删快。包含了大量操作首尾元素的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 创建一个LinkedList集合  不能使用多态</span></span><br><span class="line">    LinkedList&lt;String&gt; linked = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="comment">// 使用add()方法向集合中添加元素</span></span><br><span class="line">    linked.add(<span class="string">"a"</span>);</span><br><span class="line">    linked.add(<span class="string">"b"</span>);</span><br><span class="line">    linked.add(<span class="string">"c"</span>);</span><br><span class="line">    linked.add(<span class="string">"a"</span>);</span><br><span class="line">    System.out.println(linked); <span class="comment">// [a, b, c, a]</span></span><br><span class="line"></span><br><span class="line">    linked.addFirst(<span class="string">"first"</span>); <span class="comment">// 向集合的开头添加元素  也可以用push()方法</span></span><br><span class="line">    System.out.println(linked); <span class="comment">// [first,a, b, c, a]</span></span><br><span class="line"></span><br><span class="line">    linked.addLast(<span class="string">"last"</span>); <span class="comment">// 向集合的末尾添加元素  等效于add()方法</span></span><br><span class="line">    System.out.println(linked); <span class="comment">// [first,a, b, c, a,last]</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!linked.isEmpty())&#123;</span><br><span class="line">        System.out.println(linked.getFirst());</span><br><span class="line">        System.out.println(linked.getLast());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    String pop = linked.pop();<span class="comment">// 相当于removeFirst()方法，移除列表的第一个元素</span></span><br><span class="line">    System.out.println(<span class="string">"被移除的元素是: "</span> + pop);</span><br><span class="line">    System.out.println(linked); <span class="comment">// [a, b, c, a, last]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Vector集合"><a href="#Vector集合" class="headerlink" title="Vector集合"></a>Vector集合</h3><p>和ArraryList一样底层存储数据的结构是数组，并且是单线程。java1.2版本后被List集合代替。</p>
+<h2 id="Set接口"><a href="#Set接口" class="headerlink" title="Set接口"></a>Set接口</h2><p>特点: 无序、没有索引，不能存储重复数据</p>
+<p>Set集合取出元素可以使用迭代器和增强for循环</p>
+<h3 id="HashSet集合"><a href="#HashSet集合" class="headerlink" title="HashSet集合"></a>HashSet集合</h3><p>HashSet特点:存储数据的接口是<strong>哈希表</strong>结构，查询速度快;无序的；单线程的。</p>
+<h4 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h4><p><strong>哈希表:</strong> 在JDK1.8之前，哈希表底层采用数组+链表实现, 即使用链表来处理hash值冲突。JDK1.8之后，哈希表是由数组+链表+红黑树实现的。查询速度很快。</p>
+<p><strong>哈希值</strong>: 是一个十进制的整数，由系统随机给出(就是对象的地址值，是一个逻辑地址，是模拟出来的地址，不是数据实际存储的物理地址值)<br>在Object类中有一个方法可以获取对象的哈希值<code>hashCode()</code>方法<br>String类重写了hashCode()方法，如果字符串内容相同，则hashCode(相同)</p>
+<p><strong>哈希冲突</strong>: 对象内容不同，但对应的hashCode()是相同的。例如: ”重地“ 和 ”通话“</p>
+<p><strong>链表的结构</strong>: 见下图<br><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1625800533/%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84_gd1fwt.png" alt="链表的结构"></p>
+<p><strong>Set集合存储元素不重复的原理</strong>: 存储的元素必须重写hashCode()和equals()方法<br><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1625801245/hashSet%E5%AD%98%E5%82%A8%E5%85%83%E7%B4%A0%E4%B8%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8E%9F%E7%90%86_vmlcq3.png" alt="Set集合存储元素不重复的原理"></p>
+<h3 id="LinkedHashSet集合"><a href="#LinkedHashSet集合" class="headerlink" title="LinkedHashSet集合"></a>LinkedHashSet集合</h3><p>继承了和HashSet集合，但是是有序的。<br>底层是一个哈希表(数组+链表/红黑树) + 链表,多了一个链表来记录元素的存储顺序，保证元素有序。</p>
+<h2 id="Map集合"><a href="#Map集合" class="headerlink" title="Map集合"></a>Map集合</h2><h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p><strong>特点:</strong></p>
+<p>1、Map集合是一个双列集合，一个元素包含两个值(一个key，一个value)<br>2、Map集合中的元素，key和value的数据类型可以相同，也可以不同<br>3、Map集合中的元素，key是不允许重复的，value可以重复<br>4、Map集合中的元素，key和value是一一对应的，一个key对应一个value</p>
+<p><strong>常用方法:</strong></p>
+<p>public V put(K key, Vvalue): 把指定的键与指定的值添加到map集合中。返回值V: 存储键值对的时候，key不重复，返回值V是null，如果key重复，会使用新的value替换map中重复的value,返回被替换的value的值</p>
+<p>public V remove(Object key): 把指定的键 多对应的键值对元素在集合中删除，返回被删除元素的值。返回值V: key存在，返回被删除的值，key不存在返回null</p>
+<p>public V get(Object key): 通过指定的键，获取对应的值。返回值V: key存在，返回对应的value的值，key不存在返回null</p>
+<p>boolean containsKey(Object key): 判断集合中时候包含指定的key。key存在，返回true，key不存在返回false</p>
+<p><strong>遍历map集合:</strong></p>
+<p>1、keySet(): 把集合中的所有key取出来存放在set集合中，然后编辑set，并且通过key取出所有的value<br>2、Entry(): map集合中的一对对的键值对又叫做Entry对象。Entry将键值对的对应关系封装成了对象。</p>
+<p><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1625817720/Entry%E5%AF%B9%E8%B1%A1_oc1fr2.png" alt="Entry对象"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Map&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">"黄晓明"</span>,<span class="string">"杨颖"</span>);</span><br><span class="line">    map.put(<span class="string">"李晨"</span>,<span class="string">"范冰冰"</span>);</span><br><span class="line">    map.put(<span class="string">"吴京"</span>,<span class="string">"谢楠"</span>);</span><br><span class="line"></span><br><span class="line">    Set&lt;Map.Entry&lt;String, String&gt;&gt; entries = map.entrySet();</span><br><span class="line">    Iterator&lt;Map.Entry&lt;String, String&gt;&gt; iterator = entries.iterator();</span><br><span class="line">    <span class="keyword">while</span>(iterator.hasNext())&#123;</span><br><span class="line">        Map.Entry&lt;String, String&gt; entry = iterator.next();</span><br><span class="line">        System.out.println(entry.getKey() + <span class="string">"="</span> + entry.getValue());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"------------"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : entries) &#123;</span><br><span class="line">        System.out.println(entry.getKey() + <span class="string">"="</span> + entry.getValue());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><p>继承了HashMap，底层结构多了一个链表用来存储元素的顺序，因此具有可预知的迭代顺序。（存储和取出顺序一致）</p>
+<h3 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h3><p>和HashMap的区别:<br>1、 key和value都不允许为空<br>2、 是一个线程安全的集合，是单线程集合，速度慢</p>
+<p>Hashtable和Vector集合一样，在JDK1.2版本之后被更先进的集合(HashMap,ArrayList)取代了<br>Hashtable的子类Properties依然活跃<br>Properties集合是一个唯一和IO流相结合的集合</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://xyyanzi.github.io/2021/05/25/java%E5%AD%A6%E4%B9%A0day9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1369,135 +1511,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xyyanzi.github.io/2021/03/08/selenium%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="豆包">
-      <meta itemprop="description" content="一只爱吃肉的豆包">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="豆包的博客间">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/08/selenium%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">selenium学习笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-03-08 10:58:20" itemprop="dateCreated datePublished" datetime="2021-03-08T10:58:20+08:00">2021-03-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-16 15:58:50" itemprop="dateModified" datetime="2021-04-16T15:58:50+08:00">2021-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">自动化测试</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="selenium介绍"><a href="#selenium介绍" class="headerlink" title="selenium介绍"></a>selenium介绍</h3><p>Selenium is a suite of tools to automate web browsers across many platforms.<br>selenium是一个可以在不同平台实现浏览器自动化的一套工具<br>主要由三个工具组成: WebDriver、IDE、Grid</p>
-<ul>
-<li>runs in many browsers and operating systems  可以在多种浏览器和操作系统中运行</li>
-<li>can be controlled by many programming languages and testing frameworks  支持多种程序语言和测试框架 <a href="https://www.selenium.dev/" target="_blank" rel="noopener">官网</a></li>
-</ul>
-<p><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1615194766/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_7d337e63-dd50-4343-96e6-b1fc55040be3_elk9hc.png" alt="selenium架构图"></p>
-<h3 id="selenium安装和环境配置"><a href="#selenium安装和环境配置" class="headerlink" title="selenium安装和环境配置"></a>selenium安装和环境配置</h3><h4 id="selenium安装"><a href="#selenium安装" class="headerlink" title="selenium安装"></a>selenium安装</h4><h5 id="Java"><a href="#Java" class="headerlink" title="Java"></a><strong>Java</strong></h5><p>selenium的安装，如果需要执行chrome driver，需要引入相应的依赖。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.seleniumhq.selenium&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;selenium-java&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;3.X&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.seleniumhq.selenium&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;selenium-chrome-driver&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;3.X&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="Python"><a href="#Python" class="headerlink" title="Python"></a><strong>Python</strong></h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install selenium</span><br></pre></td></tr></table></figure>
-
-<h4 id="Webdriver安装"><a href="#Webdriver安装" class="headerlink" title="Webdriver安装"></a>Webdriver安装</h4><p>1、下载浏览器版本所对应的webdriver <a href="https://chromedriver.chromium.org/downloads/version-selection" target="_blank" rel="noopener">具体方法</a><br>2、将webdriver添加到环境变量中 <a href="https://www.selenium.dev/documentation/zh-cn/webdriver/driver_requirements/" target="_blank" rel="noopener">参考文档</a><br><code>export PATH=&quot;$PATH:/path/to/chromedriver&quot;</code></p>
-<h3 id="selenium用例编写"><a href="#selenium用例编写" class="headerlink" title="selenium用例编写"></a>selenium用例编写</h3><p>编写步骤：</p>
-<blockquote>
-<p>1、初始化driver<br>2、get(url)打开一个网址<br>3、findElement定位到要操作的元素进行操作<br>4、关闭driver</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@BeforeAll</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">initData</span><span class="params">()</span></span>&#123;</span><br><span class="line">        driver = <span class="keyword">new</span> ChromeDriver();</span><br><span class="line"><span class="comment">//        System.setProperty("webdriver.chrome.driver", "/Users/xunyan/Softs/chromedriver");</span></span><br><span class="line">        <span class="comment">// 增加全局隐式等待处理 (等到元素出现，但元素可能不可点击不可见)</span></span><br><span class="line">        driver.manage().timeouts().implicitlyWait(<span class="number">5</span>, TimeUnit.SECONDS);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">()</span></span>&#123;</span><br><span class="line">        String url = <span class="string">"https://ceshiren.com/"</span>;</span><br><span class="line">        driver.get(url);</span><br><span class="line">        driver.findElement(By.xpath(<span class="string">"//span[contains(text(), '登录')]"</span>)).click();</span><br><span class="line"></span><br><span class="line">        driver.findElement(By.id(<span class="string">"login-account-name"</span>)).clear(); <span class="comment">// 清除输入框中记录的内容</span></span><br><span class="line">        driver.findElement(By.id(<span class="string">"login-account-name"</span>)).sendKeys(<span class="string">"xxx"</span>);</span><br><span class="line"></span><br><span class="line">        driver.findElement(By.id(<span class="string">"login-account-name"</span>)).clear(); <span class="comment">// 清除输入框中记录的内容</span></span><br><span class="line">        driver.findElement(By.id(<span class="string">"login-account-password"</span>)).sendKeys(<span class="string">"xxx"</span>);</span><br><span class="line"></span><br><span class="line">        driver.findElement(By.id(<span class="string">"login-button"</span>)).click();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterAll</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// case运行结束后关闭driver</span></span><br><span class="line">        driver.quit();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三种等待方式"><a href="#三种等待方式" class="headerlink" title="三种等待方式"></a>三种等待方式</h3><ul>
-<li>直接等待<blockquote>
-<p>强制等待，线程休眠一段时间 <code>Thread.sleep(5)</code></p>
-</blockquote>
-</li>
-<li>隐式等待<blockquote>
-<p>设置一个等待时间，轮询查找(默认时间0.5s)元素是否出现，如果不出现抛出异常 <code>dirver.manage().timeout().implicitlyWait(5, TimeUnit.SECONDS)</code></p>
-</blockquote>
-</li>
-<li>显示等待<blockquote>
-<p>程序每隔一段时间(默认时间0.5s)进行条件判断，如果条件成立则继续执行，否则继续等待，直到超时。 通过WebDriverWait结合until()方法实现</p>
-</blockquote>
-</li>
-</ul>
-<p><strong>隐式等待和显式等待的区别:</strong><br>隐式等待用于全局设置，通常在setup中定义，在之后所有的查找元素时都进行隐式等待。显示等待可以针对某单个元素进行设置。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">waitTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">// 显示等待有两种方式，一种是匿名内部类方式，一种是自带的方法</span></span><br><span class="line">    String url = <span class="string">"https://ceshiren.com/"</span>;</span><br><span class="line">    driver.get(url);</span><br><span class="line">    <span class="comment">// 使用自带的方法</span></span><br><span class="line">    WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(<span class="string">"//span[contains(text(), '登录')]"</span>)));</span><br><span class="line">    element.click();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 使用匿名内部类</span></span><br><span class="line">    WebElement element1 = wait.until(<span class="keyword">new</span> ExpectedCondition&lt;WebElement&gt;() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> WebElement <span class="title">apply</span><span class="params">(WebDriver driver)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> driver.findElement(By.xpath(<span class="string">"//span[contains(text(), '登录')]"</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    element1.click();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="web控件定位与常见操作"><a href="#web控件定位与常见操作" class="headerlink" title="web控件定位与常见操作"></a>web控件定位与常见操作</h3><h4 id="XPath和CSS-Selector"><a href="#XPath和CSS-Selector" class="headerlink" title="XPath和CSS Selector"></a>XPath和CSS Selector</h4><p>XPath是XML Path language, 用于解析HTML和XML。 速度比css selector慢很多，原因是查找元素是从头到尾的遍历查找。但是appium中原生控件不支持css selector，只能用xpath。</p>
-<p><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1615214778/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_a2032c72-16c3-42b8-88a3-56f2986122a0_y4vqko.png" alt="XPath语法"></p>
-<p><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1615214821/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_6a6700c5-c1b1-4a3f-8dfa-a873d16c9400_eehhd4.png" alt="XPath常用表达式"></p>
-<p><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1615215695/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_8f93f904-8081-4f11-9990-59b362cea7b6_p1jkct.png" alt="常用css"></p>
-<p><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1615215819/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_f262917b-185f-4b53-b22d-dffb10b81205_yusobg.png" alt="css"></p>
-<blockquote>
-<p>p:nth-child(2)  表示p元素对应的父元素的第2个子元素<br>xpath中的/代表子节点，//代表子孙节点<br>css selector中的 空格代表子节点  &gt;代表子孙节点</p>
-</blockquote>
-<p><code>$(&#39;#navigation-bar li:nth-child(4)&#39;)</code><br><code>$x(&#39;//*[@id=&quot;navigation-bar&quot;]//li[4]&#39;)</code></p>
-<h3 id="控件操作进阶"><a href="#控件操作进阶" class="headerlink" title="控件操作进阶"></a>控件操作进阶</h3><p>Actions类是selenium对键盘、鼠标进行操作的类<br><strong>执行原理：</strong><br>调用Actions方法时不会立即执行，而是将所有的操作按顺序存放在一个队列里，当你调用perform()方法时，队列中的事件会一次执行。<br><strong>基本用法：</strong><br>生成一个动作 <code>Actions action = new Actions(driver)</code><br>动作添加方法1 action.方法1<br>动作添加方法2 action.方法2<br>调用perform()方法执行 action.perform()  </p>
-<p>.click()  鼠标左键点击<br>.sendKeys()  键盘输入</p>
-<p>.doubleClick()  鼠标左键双击<br>.contextClick()  鼠标右键单击<br>.moveToElement()  将鼠标移动到某个元素上<br>.gradAndDrop(被拖拽元素,目标元素)  将元素拖拽到另一个元素位置<br>.keyDown(键盘按键)  按下键盘的某个键<br>.keyUp(键盘按键)  抬起键盘的某个键</p>
-<h3 id="多窗口处理与网页frame"><a href="#多窗口处理与网页frame" class="headerlink" title="多窗口处理与网页frame"></a>多窗口处理与网页frame</h3><h4 id="多窗口切换"><a href="#多窗口切换" class="headerlink" title="多窗口切换"></a>多窗口切换</h4><p>多窗口切换通过切换句柄实现<br>1、先获取到当前的窗口句柄 <code>driver.getWindowHandle()</code><br>2、再获取到所有的窗口句柄 <code>driver.getWindowHandles()</code><br>3、判断是否是想要操作的窗口，如果是，继续操作，如果不是，进行切换之后再操作  <code>driver.switchTo().window(name)</code></p>
-<h4 id="frame切换"><a href="#frame切换" class="headerlink" title="frame切换"></a>frame切换</h4><p>web自动化中如果一个元素定位不到，name很大可能是在iframe中。<br>frame是html中的框架，在html中所谓的框架就是可以再同一个浏览器中显示不止一个页面。<br>frame分为 frameset、frame、iframe三种<br>frame和iframe对selenium定位而言是不样的，selenium有一组专门的api对frame进行操作。<br>frame存在两种，一种是嵌套的，一种是未嵌套的。  </p>
-<p><strong>切换frame</strong><br><code>driver.switchTo().frame()</code> 根据元素id或者index切换frame<br><code>driver.switchTo().defaultContent()</code> 切换到默认frame<br><code>driver.switchTo().parentFrame()</code> 切换到父级frame</p>
-<p>对于未嵌套的iframe可以直接使用id进行定位，也可以使用index进行定位<br>对于嵌套的iframe先进入到iframe的父节点，再进到子节点，然后可以对子节点里面的对象进行处理和操作  </p>
-<h4 id="多浏览器处理"><a href="#多浏览器处理" class="headerlink" title="多浏览器处理"></a>多浏览器处理</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">initData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String browserName = System.getenv(<span class="string">"browser"</span>);</span><br><span class="line">    <span class="keyword">if</span> (browserName == <span class="keyword">null</span> || <span class="string">"chrome"</span>.equals(browserName)) &#123;</span><br><span class="line">        System.setProperty(<span class="string">"webdriver.chrome.driver"</span>, <span class="string">"/Users/Softs/chromedriver"</span>);</span><br><span class="line">        driver = <span class="keyword">new</span> ChromeDriver();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"firefox"</span>.equals(browserName)) &#123;</span><br><span class="line">        System.setProperty(<span class="string">"webdriver.gecko.driver"</span>, <span class="string">"/Users/Softs/geckodriver"</span>);</span><br><span class="line">        driver = <span class="keyword">new</span> FirefoxDriver();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"safari"</span>.equals(browserName)) &#123;</span><br><span class="line">        driver = <span class="keyword">new</span> SafariDriver();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>1、safari使用之前需要在终端执行<code>safaridriver --enable</code>命令<br>2、case运行：browser=“chrome” mvn test -Dtest=BrowserTest</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1567,7 +1580,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
