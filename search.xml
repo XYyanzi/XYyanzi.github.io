@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>获取java程序的堆栈文件并使用VisualVM进行分析</title>
+      <link href="/2021/07/17/%E8%8E%B7%E5%8F%96java%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%A0%86%E6%A0%88%E6%96%87%E4%BB%B6%E5%B9%B6%E4%BD%BF%E7%94%A8VisualVM%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90/"/>
+      <url>/2021/07/17/%E8%8E%B7%E5%8F%96java%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%A0%86%E6%A0%88%E6%96%87%E4%BB%B6%E5%B9%B6%E4%BD%BF%E7%94%A8VisualVM%E8%BF%9B%E8%A1%8C%E5%88%86%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<p>docker内运行的程序导出堆栈文件方法:<br><strong>1、进入docker容器内部</strong><br>docker ps 查到对应的容器id<br><code>docker exec -it 容器id /bin/bash</code><br><strong>2、在容器内部执行命令，查找程序运行的pid</strong><br>jps -l<br><strong>3、在容器内执行命令，生成堆栈文件</strong><br><code>jmap -dump:live,format=b,file=heap001  1</code><br>其中最后的1  是上一步查出来的pid<br><strong>4、退出容器，将容器内文件导出到宿主机服务器上</strong><br>在容器外执行命令<br>docker cp 容器id:文件路径  宿主机路径<br><code>docker cp e79d237f703d:/app/heap001.dump /data</code><br><strong>5、查看导出的文件</strong><br><code>echo $JAVA_HOME</code> 查找java_home路径并进入<br>执行  <code>jvisualvm</code> 命令 启动软件<br>打开/heap001.dump文件</p><p><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1626502904/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_cffb0b92-9465-436e-9507-caee02197db1_uezpkx.png" alt="VM图"></p><p>另外VisualVM的安装和使用可查看:<br><a href="https://blog.csdn.net/qq_32641659/article/details/88035588?utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-2.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-2.control" target="_blank" rel="noopener">这个文章</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>java学习day11</title>
+      <link href="/2021/07/12/java%E5%AD%A6%E4%B9%A0day11/"/>
+      <url>/2021/07/12/java%E5%AD%A6%E4%B9%A0day11/</url>
+      
+        <content type="html"><![CDATA[<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>异常: 指的是程序在执行过程中，出现的非正常的情况，最终会导致JVM的非正常停止。</p><p>Throwable类是Java语言中所有错误或异常的超类。两个子类: Error\Execption</p><p>Exception(异常): 正确处理后可继续执行<br>    - 编译器异常: 编译java时出现问题<br>    - 运行期异常(RuntimeExecption): 程序运行期间出现问题<br>Error(错误):<br>    - 程序得了无法治愈的的病，必须修改源代码才能继续执行</p><p>处理异常:<br>    - 直接throws到上层方法，最终终止程序<br>    - try…catch..</p><p><img src="https://res.cloudinary.com/dqhbr3uh3/image/upload/v1626074447/%E5%BC%82%E5%B8%B8%E4%BA%A7%E7%94%9F%E7%9A%84%E8%BF%87%E7%A8%8B_yeuo8k.png" alt="异常产生的过程"></p><p>异常处理的五个关键字: <strong>try、catch、finally、throw、throws</strong></p><h3 id="抛出异常Throw"><a href="#抛出异常Throw" class="headerlink" title="抛出异常Throw"></a>抛出异常Throw</h3><p>可以使用throw关键字在指定的方法中抛出指定的异常。</p><ul><li>throw关键字必须写在方法的内部</li><li>throw关键字后边new的对象必须是Exception或者Exception的子类对象</li><li>throw关键字抛出指定的异常对象，我们就必须处理这个异常对象<ul><li>如果throw的是RuntimeException或者RuntimeException的子类，可以不处理，默认交给JVM处理</li><li>如果throw的是编译异常，就必须处理这个异常，要么throws要么try chatch</li></ul></li></ul><h3 id="声明异常thorws"><a href="#声明异常thorws" class="headerlink" title="声明异常thorws"></a>声明异常thorws</h3><p>异常处理的第一种方式:交给别人处理。会把异常对象声明抛出给方法的调用者处理。在方法声明时使用。</p><ul><li>throws关键字必须卸载方法声明处</li><li>throws关键字后面声明的异常必须是Exception或者Exception的子类</li><li>方法内部如果抛出了福讴歌异常对象，namethrows后边必须也声明多个异常，如果抛出的多个异常对象有子父类关系，那么直接声明父类异常即可</li><li>调用了一个声明抛出异常的方法，我们就必须处理声明的异常，要么继续throws抛出，要么自己try…catch..</li></ul><h3 id="try…catch"><a href="#try…catch" class="headerlink" title="try…catch"></a>try…catch</h3><p>异常处理的第二种方式:自己处理异常</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//可能产生异常的代码</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(定义一个异常的变量，用来接收<span class="keyword">try</span>中抛出的异常对象)&#123;</span><br><span class="line">    <span class="comment">//异常的处理逻辑</span></span><br><span class="line">&#125;<span class="keyword">catch</span>(异常类型 变量名)&#123;</span><br><span class="line">    <span class="comment">// 异常处理逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>try中可能会抛出多个异常对象，可以使用多个catch处理这些异常对象</li><li>如果try中产生了异常，就会执行catch中的异常处理逻辑，执行完毕后会继续执行之后的代码，如果try中没有产生异常就不会执行catch中的异常处理逻辑，直接执行后面的代码</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        readFile(<span class="string">"d:\\a.jdp"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;  <span class="comment">// try中抛出什么异常对象，catch就定义什么类型的异常对象，用来接收异常对象</span></span><br><span class="line">        System.out.println(<span class="string">"catch - 传递的文件的后缀不是.txt"</span>); <span class="comment">// 没有发生异常，就不会执行catch中的代码</span></span><br><span class="line">        <span class="comment">// getMessage();</span></span><br><span class="line">        <span class="comment">// toString();</span></span><br><span class="line">        <span class="comment">// printStackTrace();</span></span><br><span class="line">        System.out.println(e.getMessage());</span><br><span class="line">        System.out.println(e.toString()); <span class="comment">//System.out.println(e);</span></span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    System.out.println(<span class="string">"后续代码"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">readFile</span><span class="params">(String fileName)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!fileName.endsWith(<span class="string">".txt"</span>))&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">"文件后缀名不对"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"路径没有问题，读取文件"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="finally代码块"><a href="#finally代码块" class="headerlink" title="finally代码块"></a>finally代码块</h3><p>try…catch…finally: 无论是否发生异常都需要执行的代码需要放到finally代码块中。比如在try语句中打开了一些物理资源，最终都需要关闭，可以在finally代码块中处理关闭资源的代码。</p><ul><li>finally不能单独使用，必须和try一起使用</li><li>finally一般用于资源回收，无论程序会否出现异常最后资源都要释放</li><li>finally语句中避免出现return语句</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>java学习day10</title>
       <link href="/2021/06/05/java%E5%AD%A6%E4%B9%A0day10/"/>
       <url>/2021/06/05/java%E5%AD%A6%E4%B9%A0day10/</url>
